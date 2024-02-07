@@ -1,6 +1,7 @@
 from .. import utils
 
-class Token():
+
+class Token:
     @classmethod
     def data(cls, name: str):
         return utils.make_request("gettokendata", [name])
@@ -10,9 +11,11 @@ class Token():
         if count > 200:
             count = 200
 
-        data = utils.make_request("listtokens", [f"{search}*", True, count, offset])
+        data = utils.make_request(
+            "listtokens", [f"{search}*", True, count, offset]
+        )
 
-        remove = []
+        remove = ["DEV"]
 
         # ToDo: temporary solution, remove later
         for name in data["result"]:
